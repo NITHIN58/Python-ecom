@@ -1,0 +1,54 @@
+{% extends 'dashboard.html' %}
+{% block  content  %}
+
+
+    <h1>hi{{request.session.Email}}</h1>
+    <a href="{% url 'vendorview' %}">logout</a>
+    <h1 style="text-align: center;">List of vendors</h1>
+    <table class="table" style="border: 2px solid rgb(8, 11, 170);border-radius: 0.5rem;box-shadow: 10px 10px grey;margin-bottom: 100px ;margin-top: 100px;text-align: center;">
+        <thead class="thead-light" style="width: 100%;">
+            
+    
+        <tr>
+            <th>branch</th>
+            <th> vendor_name</th>
+            <th>phone_numbe</th>
+            <th>email</th>
+            <th> username</th>
+            <th>password</th>
+            <th>address</th>
+            
+        </tr>
+        </thead>
+        {% for i in vendor %}
+        <tr>
+            <td>
+                {{i.branch}}
+            </td>
+            <td>
+                {{i.vendor_name}}
+            </td>
+            <td>
+                {{i.phone_number}}
+            </td>
+            <td>
+                {{i.email}}
+            </td>
+            <td>
+                {{i.username}}
+            </td>
+            <td>
+                {{i.password}}
+            </td>
+            <td>
+                {{i.address}}
+            </td>
+            
+             
+        </tr>
+        {% endfor %}
+    </table>
+    
+   </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+
+
+<div class="col-md-6 col-md-offset-6 " style="border: 3px solid rgb(32, 32, 109); padding-right:50px; margin-left: 50px;border-radius: 1rem;box-shadow: 10px 10px grey;">
+    <form action="{% url 'addadmin' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <br>
+
+
+        <div class="form-group" style="padding-left: 50px;">
+            <h1 style="padding: 10px; margin-bottom: 20px; color:rgb(32, 32, 109) ;text-align: center;">Please Add product</h1><br><br>
+            <label><b>Product Name</b></label><br>
+            <input class="form-control" type="text" name="Product_Name">
+            <br>
+            <label style="margin-top: 10px;" class="form-label"><b>Product_Discription</b></label><br>
+            <input class="form-control" type="text" name="Product_Discription">
+            <br>
+            <label style="margin-top: 10px;" class="form-label"><b>Product_Price</b></label><br>
+            <input class="form-control" type="number" name="Product_Price">
+            <br>
+            <label style="margin-top: 10px;" class="form-label"><b>Product_Stock</b></label><br>
+            <input class="form-control" type="number" name="Product_Stock">
+            <br>
+            <label style="margin-top: 10px;" class="form-label"><b>Product_Stock_Status</b></label><br>
+            <div class="radio" style="padding: 10px;">
+                <label><input class="form-control" type="radio" value="True" name="Product_Stock_Status"
+                        checked>Available</label>
+                <label style="padding: 5px;">
+                    <input class="form-control" style="padding: 5px;" type="radio" value="False"
+                        name="Product_Stock_Status">NotAvailable
+                    </label>
+            </div><br>
+
+            <label class="form-label"><b>Product_Category</b></label><br>
+            <select class="form-control" class="form-control" name="Product_Category" id="cars">
+                <option class="form-control" selected>choose the category</option>
+
+                {% for i in cat %}
+                <option class="form-control" value="{{i.Category_Name}}">{{i.Category_Name}}</option>
+                {% endfor %}
+            </select><br>
+            <br>
+            <label  class="form-label"><b>product Picture</b></label><br>
+            <input class=" form-control-lg " style="padding-top: 10px;" name="Product_Image" type="file"><br><br>
+            <br><br>
+            <button style=" margin-left:auto;margin-right:auto;display:block;width:200px; " type="submit"
+                class="btn btn-success ">submit</button>
+        </div>
+
+</div>
+</form>
+
+</div>
+
+</div>
+{% endblock %}

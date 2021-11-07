@@ -1,0 +1,91 @@
+{% extends 'dashboard.html' %}
+{% block  content  %}
+   
+<form method="POST" action="{% url 'filterprice' %}">
+    {% csrf_token %}
+   
+    <input type="text" value="" name="pricefrom" id="productprice" placeholder="price from">
+    <input type="text" value="" name="priceto" id="productprice" placeholder="price to">
+    <button type="submit">Filter</button>
+    <a href="/media/csvfile/products.csv" class="btn btn-success">Download</a><br><br>
+
+</form>
+
+    <h1>hi{{request.session.Email}}</h1>
+    <a href="{% url 'view' %}">logout</a>
+    <h1 style="text-align: center;">List of Products</h1><br><br>
+    <form action="{% url 'productreport' %}" method="POST">
+        {% csrf_token %}
+        <label style="margin-left: 30px;margin-right: 4px;">Category</label>
+        <input type="text" name="searchcategory"/>
+   
+        <label style="margin-left: 30px;  margin-right: 4px;">Name</label>
+        <input type="text" name="searchname"/>
+
+        <label style="margin-left: 30px;  margin-right: 4px;">Vendor</label>
+        <input type="text" name="searchvendor"/>
+      
+      <button class="btn btn-success type="submit">Filter</button>
+      <button class="btn btn-danger type="submit">Reset</button>
+    </form>
+
+         
+    <table class="table" style="border: 2px solid rgb(8, 11, 170);border-radius: 0.5rem;box-shadow: 10px 10px grey;margin-bottom: 100px ;margin-top: 100px;">
+        <thead class="thead-light" style="width: 100%;">
+            
+         
+            <th>Product_Name</th>
+            <th> Product_Discription</th>
+            <th>Product_Price</th>
+            <th>Product_Stock</th>
+            <th>Product_Stock_Status</th>
+            <th>Product_Category</th>
+            <th>vendor</th>
+            <th>Product_Image</th>
+          
+            
+        </tr>
+        </thead>
+        {% for i in product %}
+        <tr>
+            <td>
+                {{i.Product_Name}}
+            </td>
+            <td>
+                {{i.Product_Discription}}
+            </td>
+            <td>
+                {{i.Product_Price}}
+            </td>
+            <td>
+                {{i.Product_Stock}}
+            </td>
+            <td>
+                {{i.Product_Stock_Status}}
+            </td>
+            <td>
+                {{i.Product_Category}}
+            </td>
+            <td>
+                {% for i in pro %}
+                    {{i.vendor_name}}
+                {% endfor %}
+            </td>
+            <td>
+                <img src="{{i.Product_Image.url}}" alt="" style="max-width:150px;max-height: 100px;"/>
+            </td>
+           
+            <td>
+               <button style="width: 70px;background-color: rgb(182, 240, 201);border-radius: 0.5rem;"> <a style="color: green;" href="{% url 'update' userid=i.id %}"><span style="color: green;" ></span><b>Edit</b></a></button>
+            </td>
+            <td>
+                <button  style="width: 70px;background-color: rgb(238, 177, 177);border-radius: 0.5rem;"> <a style="color:red;" href="{% url 'deletepro' userid=i.id %}"><span style="color:red;" ></span><b>Delete</b></a></button>
+            </td>
+             
+        </tr>
+        {% endfor %}
+    </table>
+    
+   </div>
+
+{% endblock %}

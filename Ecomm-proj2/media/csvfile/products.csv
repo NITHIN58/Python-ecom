@@ -1,0 +1,4 @@
+,id,Product_Name,Product_Image,Product_Discription,Product_Price,Product_Stock,Product_Stock_Status,Product_Category_id
+0,2,shoe,photo-1542291026-7eec264c27ff.jpg,good,1,4,True,1
+1,4,addidass,photo-1542291026-7eec264c27ff_y5MQygx.jpg,nice,2000,2,True,1
+2,6,Mobile,photo-1542291026-7eec264c27ff_bEK41lx.jpg,note 9 pro,10000,2,True,2
